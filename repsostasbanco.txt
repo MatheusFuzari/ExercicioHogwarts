@@ -1,0 +1,20 @@
+RESPOSTAS EXERCICIO 3 BANCO DE DADOS
+
+a -) select ficha.turma,count(*) DIV 13 as quantidade from inn join ficha on inn.ficha_fk = ficha.id group by ficha.turma;
+
+b -) select min(d.medidas) as minimo,d.nome from (select it.nome,AVG(i.nota_fk) medidas from inn i join items it on i.item_fk = it.id group by i.item_fk order by medidas asc)d;
+
+c -) select max(d.medidas) as minimo,d.nome from (select it.nome,AVG(i.nota_fk) medidas from inn i join items it on i.item_fk = it.id group by i.item_fk order by medidas desc)d;
+
+d -) select d.turma,d.nome,min(d.aa) from (select f.turma,it.nome,AVG(nota_fk)as aa from inn i join items it on i.item_fk = it.id join ficha f on i.ficha_fk = f.id group by i.item_fk, f.turma order by aa asc)d group by d.turma;
+
+e -) select d.turma,d.nome,max(d.aa) from (select f.turma,it.nome,AVG(nota_fk)as aa from inn i join items it on i.item_fk = it.id join ficha f on i.ficha_fk = f.id group by i.item_fk, f.turma order by aa desc)d group by d.turma;
+
+f -) select min(d.medidas) as minimo,d.nome from (select it.nome,AVG(i.nivel_fk) medidas from inn i join items it on i.item_fk = it.id group by i.item_fk order by medidas asc)d;
+g-) select max(d.medidas) as minimo,d.nome from (select it.nome,AVG(i.nivel_fk) medidas from inn i join items it on i.item_fk = it.id group by i.item_fk order by medidas desc)d;
+h -) select d.turma,d.nome,min(d.aa) from (select f.turma,it.nome,AVG(i.nivel_fk)as aa from inn i join items it on i.item_fk = it.id join ficha f on i.ficha_fk = f.id group by i.item_fk, f.turma order by aa asc)d group by d.turma;
+i -) select d.turma,d.nome,max(d.aa) from (select f.turma,it.nome,AVG(i.nivel_fk)as aa from inn i join items it on i.item_fk = it.id join ficha f on i.ficha_fk = f.id group by i.item_fk, f.turma order by aa desc)d group by d.turma;
+
+j -) select * from inn i join ficha f on i.ficha_fk = f.id where aluno is not null group by f.aluno;
+
+k -) select min(d.quantidade) as MenosPartcip,max(d.quantidade) as MaisPartcip from (select ficha.turma,count(*) DIV 13 as quantidade from inn join ficha on inn.ficha_fk = ficha.id group by ficha.turma)d;
